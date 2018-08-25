@@ -14,7 +14,7 @@ var InsightDigiAssetUI = function(options) {
   if (typeof options.routePrefix !== 'undefined') {
     this.routePrefix = options.routePrefix;
   } else {
-    this.routePrefix = 'digiasset-insight';
+    this.routePrefix = 'insight-digiasset';
   }
 };
 

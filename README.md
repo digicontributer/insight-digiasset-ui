@@ -1,4 +1,4 @@
-# Insight UI
+# Insight DigiAsset UI
 
 A DigiByte blockchain explorer web application service for [DigiByte Node](https://github.com/digibyte/digibyte-node) using the [Insight API](https://github.com/digibyte/insight-digibyte-api).
 
@@ -15,11 +15,11 @@ npm install -g digibyte-node
 digibyte-node create mynode
 cd mynode
 digibyte-node install insight-digibyte-api
-digibyte-node install insight-digibyte-ui
+digibyte-node install insight-digiasset-ui
 digibyte-node start
 ```
 
-Open a web browser to `http://localhost:3001/insight/`
+Open a web browser to `http://localhost:3001/insight-digiasset/`
 
 ## Development
 
