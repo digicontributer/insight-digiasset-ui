@@ -4,7 +4,7 @@ var TRANSACTION_DISPLAYED = 10;
 var BLOCKS_DISPLAYED = 5;
 
 angular.module('insight.system').controller('IndexController',
-  function($scope, $http, Global, getSocket, Blocks) {
+  function($scope, Global, getSocket, Blocks, getAssetMetadata, getPopularAssets, getMainStats, getAssetTransactions) {
     $scope.global = Global;
 
     function simpleAssetMeta(asset) {
@@ -69,7 +69,7 @@ angular.module('insight.system').controller('IndexController',
         //return callback({assetName: assetName, assetIcon: assetIcon, issuer: issuer, verifications: verifications});
       } 
     
-      return $http.get( metaapi + "/" + localIndex).then(function (apimeta) {
+      return getAssetMetadata.get( { assetId: asset.assetId, index: localIndex }).then(function (apimeta) {
         asset.metaData = apimeta;
         
         var assetMeta = simpleAssetMeta(asset);
@@ -92,7 +92,7 @@ angular.module('insight.system').controller('IndexController',
     var getPopularAssetsList = function() {
       var appended = "";
       var holder;
-      return $http.get("http://139.99.149.154:8080/api/getpopularassets")
+      return getPopularAssets.get()
       .then(function (resp) {
         var i = 0;
         var getAssetData = function(cb) {
@@ -111,7 +111,7 @@ angular.module('insight.system').controller('IndexController',
     }
 
     var _getAssetStats = function() {
-      return $http.get('http://139.99.149.154:8080/api/getmainstats').then(function(resp) {
+      return getMainStats.get().then(function(resp) {
         $scope.numOfAssets = resp.data.numOfAssets;
         $scope.numOfCCTransactions = resp.data.numOfCCTransactions;
         $scope.numOfHolders = resp.data.numOfHolders;
@@ -119,7 +119,7 @@ angular.module('insight.system').controller('IndexController',
     }
 
     var _getLatestAssets = function() {
-      return $http.get('http://139.99.149.154:8080/api/getcctransactions?limit=5').then(function(resp) {
+      return getAssetTransactions.get({ limit: 5 }).then(function(resp) {
         $scope.latestAssets = resp.data.map(function(a) {
           var transtype = a.ccdata && a.ccdata[0] && a.ccdata[0].type || "N/A";
           var totalAsset = 0;

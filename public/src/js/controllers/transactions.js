@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('insight.transactions').controller('transactionsController',
-function($scope, $rootScope, $routeParams, $http, $location, Global, Transaction, TransactionsByBlock, TransactionsByAddress, assetTransactionsByAddress, getBlockWithAssetTransactions, TransactionsAsset) {
+function($scope, $rootScope, $routeParams, $location, Global, Transaction, TransactionsByBlock, TransactionsByAddress, getAssetMetadata, assetTransactionsByAddress, getBlockWithAssetTransactions, TransactionsAsset) {
   $scope.global = Global;
   $scope.loading = false;
   $scope.loadedBy = null;
@@ -49,14 +49,13 @@ function($scope, $rootScope, $routeParams, $http, $location, Global, Transaction
     var time = Math.floor(new Date().getTime() / 1000);
     var assetName = asset.assetId;
     var assetIcon; //= defaultIcon;
-    var metaapi = "http://localhost:8080/v2/" + "assetmetadata/" + asset.assetId;
     var localIndex = encodeURIComponent(utxo);
     var local = localStorage[localIndex];
     var called = false;
     var issuer = "N/A";
     var verifications = {};
 
-    return $http.get( metaapi + "/" + localIndex).then(function (resp) {
+    return getAssetMetadata.get({ assetId: asset.assetId, index: localIndex }).then(function (resp) {
       var apimeta = resp.data;
       asset.metaData = apimeta;
         
