@@ -104,7 +104,7 @@ module.exports = function(grunt) {
     nggettext_compile: {
       all: {
         options: {
-          module: 'insight-digiasset'
+          module: 'insight'
         },
         files: {
           'public/src/js/translations.js': ['po/*.po']

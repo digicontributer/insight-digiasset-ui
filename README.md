@@ -19,7 +19,7 @@ digibyte-node install insight-digiasset-ui
 digibyte-node start
 ```
 
-Open a web browser to `http://localhost:3001/insight-digiasset/`
+Open a web browser to `http://localhost:3001/insight/`
 
 ## Development
 
