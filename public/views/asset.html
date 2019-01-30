@@ -74,11 +74,11 @@
           <a class="collapsed accordion-toggle stoggle" aria-expanded="false" aria-controls="metadataCollapse" style="color: #f60;">METADATA</a>
         </div>
         <div style="border-top: 2px solid #c2c1ba;" ng-show="metadataExpanded">
-          <div style="padding: 7px 0; background-color: #e3e2dc;" id="metaFields" ng-repeat="meta in metaUserData">
+          <div style="padding: 7px 0; background-color: #e3e2dc;" id="metaFields" ng-repeat="(key, value) in metadata">
             <div class="metadataItem">
-              <Label>{{meta.key}}</Label>
+              <Label>{{key}}</Label>
               <br>
-              <div class="well">{{meta.value}}</div>
+              <div class="well">{{value}}</div>
             </div>
           </div>
           <div style="padding: 7px 0; background-color: #e3e2dc;" id="metaURLs">

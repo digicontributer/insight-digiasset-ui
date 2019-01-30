@@ -55,7 +55,7 @@ function($scope, $rootScope, $routeParams, $location, Global, Transaction, Trans
     var issuer = "N/A";
     var verifications = {};
 
-    return getAssetMetadata.get({ assetId: asset.assetId, index: localIndex }).then(function (resp) {
+    return getAssetMetadata.get({ assetId: asset.assetId, index: localIndex }, function (resp) {
       var apimeta = resp.data;
       asset.metaData = apimeta;
         
